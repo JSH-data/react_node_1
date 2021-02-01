@@ -76,12 +76,12 @@ userSchema.methods.generateToken = function(cb) {
 };
 
 userSchema.statics.findByToken = function (token, cb) {
-    var user = this;
+    var user = this; // 여기서 애로우 펑션쓰면 안됩니다. 그렇게하면 this를 잡지 못합니다. 
     // 토큰을 decode합니다. 
     jwt.verify(token, 'secretToken', function (err, decoded) {
         // 유저 아이디를 이용하여 유저를 찾습니다.
         // 클라이언트에서 가져온 토큰과 DB에 보관된 토큰이 일치하는지 확인하여 줍니다. 
-        user.findOne({ "_id": decoded, "token": token }, (err, user) => {
+        user.findOne({ "_id": decoded, "token": token }, function (err, user) {
             if(err) return cb(err)
             cb(null, user)
         })

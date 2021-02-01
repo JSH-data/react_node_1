@@ -3,10 +3,10 @@ const app = express()
 const port = 5000
 const mongoose = require('mongoose')
 const bodyParser = require("body-parser")
-const { User } = require("../models/Users");
-const config = require('./config/key')
+const { User } = require("./models/User");
+const config = require('./server/config/key')
 const cookieParser = require('cookie-parser')
-const { auth } = require("./middleware/auth")
+const { auth } = require("./server/middleware/auth")
 
 // url 형식의 데이터를 읽어 올 수 있도록 도와줍니다. 
 // json형식의 데이터를 읽어 올 수 있도록 도와줍니다. 
@@ -20,9 +20,11 @@ mongoose.connect(config.mongoURI, {
   useNewUrlParser:true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
 }).then(() => console.log("MongoDB Connected...")).catch(err => console.log(err))
 
+
+
 app.get('/', (req, res) => { res.send('Hello World!') })
 
-
+app.get('/api/hello', (req, res) => { res.send('Hello World!') })
 
 
 
