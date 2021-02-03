@@ -26,7 +26,7 @@ export function registerUser(dataToSubmit) {
 }
 
 export function auth() {
-    const request = axios.get('http://loclahost:5000/api/users/auth').then(response => response.data ) // 일단 서버로 리퀘스트를 날려줍니다. 그 뒤 response 즉 서버에서 받은 데이터를 request에 저장 
+    const request = axios.get('/api/users/auth').then(response => response.data ) // 일단 서버로 리퀘스트를 날려줍니다. 그 뒤 response 즉 서버에서 받은 데이터를 request에 저장 
 
     return {
         type: AUTH_USER,
